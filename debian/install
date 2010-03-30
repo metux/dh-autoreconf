@@ -1,0 +1,3 @@
+dh_autoreconf       usr/bin
+dh_autoreconf_clean usr/bin
+autoreconf.pm       /usr/share/perl5/Debian/Debhelper/Sequence

@@ -1,0 +1,81 @@
+#!/usr/bin/perl -w
+
+=head1 NAME
+
+dh_autoreconf - Call autoreconf -f -i and keep track of the changed files.
+
+=cut
+
+use strict;
+use Debian::Debhelper::Dh_Lib;
+
+=head1 SYNOPSIS
+
+B<dh_autoreconf> [S<I<debhelper options>>]  [B<-X>I<item>]
+
+=head1 DESCRIPTION
+
+dh_autoreconf is responsible for calling autoreconf and creating the files
+debian/autoreconf.before and debian/autoreconf.after which contain the md5sum
+of all files before/after the build. It is complemented by dh_autoreconf_clean
+which creates a list of all changed and added files and removes them.
+
+=head1 OPTIONS
+
+=over 4
+
+=item B<-X>I<item> B<--exclude=>I<item>
+
+Make sure that autoreconf does not replace the file "item". This is done by
+copying the file to a temporary location before autoreconf and copying it
+back afterwards. This may be useful to prevent patched files (e.g. by dpkg
+in source format 3) from being overwritten by something else.
+
+=back
+
+=head1 ENVIRONMENT
+
+For each tool executed by L<autoreconf(1)>, one can export a variable with
+the uppercase name of the tool to the specific program which shall be run,
+including B<true> to prevent the tool in question from being run. The following
+example shows the beginning of a debian/rules for a package where automake
+1.10 shall be run instead of the default automake version and libtoolize
+shall not be run:
+
+    #!/usr/bin/make -f
+    export AUTOMAKE = automake1.10
+    export LIBTOOLIZE = true
+
+
+=cut
+
+init();
+
+# Create a list of all the files
+complex_doit('find -type f | xargs md5sum > debian/autoreconf.before');
+
+# Copy the files we don't want to be replaced into a temporary location.
+foreach(@{$dh{EXCLUDE}}) {
+    doit('install', '-D', '--', $_, "debian/autoreconf-excluded.d/$_");
+}
+
+# Run autoreconf to recreate the needed files.
+doit('autoreconf', '-f', '-i');
+
+# Copy the files we don't want to be replaced back.
+foreach(@{$dh{EXCLUDE}}) {
+    doit('install', '-D', '--', "debian/autoreconf-excluded.d/$_", $_);
+}
+
+# Create a list of all the files (compared later on)
+complex_doit('find -type f | xargs md5sum > debian/autoreconf.after');
+
+=head1 SEE ALSO
+
+L<debhelper(7)>, L<dh_autoreconf_clean(1)>, L<dh-autoreconf(7)>
+
+=head1 AUTHOR
+
+Julian Andres Klode <jak@debian.org>
+
+=cut

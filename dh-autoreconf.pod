@@ -1,0 +1,28 @@
+=head1 NAME
+
+dh-autoreconf - debhelper add-on to run autoreconf during build
+
+=head1 DESCRIPTION
+
+The dh-autoreconf package provides a sequence addon for debhelper 7 which
+can be used in the following way:
+
+    #!/usr/bin/make -f
+    %:
+        dh --with autoreconf $@
+
+This will call dh_autoreconf prior to dh_auto_configure and will call
+dh_autoreconf_clean before dh_clean.
+
+For more information on how to control the autoreconf process or how to
+exclude stuff from autoreconf, read the L<dh_autoreconf(1)> manual page. For
+information on how to prevent unwanted file deletions, read the manual page
+of L<dh_autoreconf_clean(1)>.
+
+=head1 SEE ALSO
+
+L<debhelper(7)>, L<dh(1)>, L<dh_autoreconf(1)>, L<dh_autoreconf_clean(1)>
+
+=head1 AUTHOR
+
+Julian Andres Klode <jak@debian.org>
