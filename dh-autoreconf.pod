@@ -19,6 +19,14 @@ exclude stuff from autoreconf, read the L<dh_autoreconf(1)> manual page. For
 information on how to prevent unwanted file deletions, read the manual page
 of L<dh_autoreconf_clean(1)>.
 
+=head1 CDBS INTEGRATION
+
+This package also provides F</usr/share/cdbs/1/rules/autoreconf.mk> for
+packages using B<CDBS>. The variable C<DEB_DH_AUTORECONF_ARGS> can be used
+to pass extra arguments to dh_autoreconf, and the variable
+C<DEB_DH_AUTORECONF_CLEAN_ARGS> to pass arguments to dh_autoreconf_clean. See
+their manual pages for information on available arguments.
+
 =head1 SEE ALSO
 
 L<debhelper(7)>, L<dh(1)>, L<dh_autoreconf(1)>, L<dh_autoreconf_clean(1)>

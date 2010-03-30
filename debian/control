@@ -11,7 +11,7 @@ Package: dh-autoreconf
 Architecture: all
 Depends: ${perl:Depends}, ${misc:Depends}, debhelper, autoconf,
          automake | automaken, libtool
-Enhances: debhelper
+Enhances: debhelper, cdbs
 Recommends: autopoint
 Description: debhelper add-on to call autoreconf and clean up after the build
  dh-autoreconf provides a debhelper sequence addon named 'autoreconf' and two
@@ -22,3 +22,6 @@ Description: debhelper add-on to call autoreconf and clean up after the build
  .
  The dh_autoreconf_clean command compares these two lists and removes all
  files which have been added or changed (files may be excluded if needed).
+ .
+ For CDBS users, a rule is provided to call the dh-autoreconf programs at
+ the right time.
