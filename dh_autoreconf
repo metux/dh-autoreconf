@@ -16,7 +16,7 @@ B<dh_autoreconf> [S<I<debhelper options>>]  [B<-X>I<item>]
 =head1 DESCRIPTION
 
 dh_autoreconf is responsible for calling autoreconf and creating the files
-debian/autoreconf.before and debian/autoreconf.after which contain the md5sum
+debian/autoreconf.before and debian/autoreconf.after which contain checksums
 of all files before/after the build. It is complemented by dh_autoreconf_clean
 which creates a list of all changed and added files and removes them.
 
@@ -30,6 +30,12 @@ Make sure that autoreconf does not replace the file "item". This is done by
 copying the file to a temporary location before autoreconf and copying it
 back afterwards. This may be useful to prevent patched files (e.g. by dpkg
 in source format 3) from being overwritten by something else.
+
+=item B<--mode=>I<mode>
+
+Change the way in which modifications to files are detected. The default mode
+is I<md5> for using MD5 checksums, but there is also I<timesize> for using
+the time of the last modification and the file size.
 
 =back
 
@@ -49,10 +55,17 @@ shall not be run:
 
 =cut
 
-init();
+init(options => { "mode=s" => \$dh{MODE}});
 
-# Create a list of all the files
-complex_doit('find -type f | xargs md5sum > debian/autoreconf.before');
+my %modes = (
+    'md5' => 'find -type f | xargs md5sum',
+    'timesize' => 'find -type f -printf "%s|%T@  %p\n"'
+);
+
+my $find = $modes{$dh{MODE} || "md5"} ||
+    error("Unknown value $dh{MODE} passed to --mode");
+
+complex_doit("$find > debian/autoreconf.before");
 
 # Copy the files we don't want to be replaced into a temporary location.
 foreach(@{$dh{EXCLUDE}}) {
@@ -67,8 +80,7 @@ foreach(@{$dh{EXCLUDE}}) {
     doit('install', '-D', '--', "debian/autoreconf-excluded.d/$_", $_);
 }
 
-# Create a list of all the files (compared later on)
-complex_doit('find -type f | xargs md5sum > debian/autoreconf.after');
+complex_doit("$find > debian/autoreconf.after");
 
 =head1 SEE ALSO
 
