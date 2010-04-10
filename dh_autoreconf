@@ -11,7 +11,8 @@ use Debian::Debhelper::Dh_Lib;
 
 =head1 SYNOPSIS
 
-B<dh_autoreconf> [S<I<debhelper options>>]  [B<-X>I<item>]
+B<dh_autoreconf> [S<I<debhelper options>>] [B<-X>I<item>] [B<--mode=>I<mode>]
+[S<I<program> B<--> I<params>>]
 
 =head1 DESCRIPTION
 
@@ -36,6 +37,12 @@ in source format 3) from being overwritten by something else.
 Change the way in which modifications to files are detected. The default mode
 is I<md5> for using MD5 checksums, but there is also I<timesize> for using
 the time of the last modification and the file size.
+
+=item I<program> B<--> I<params>
+
+Run the program given by I<program> with the arguments given by I<params>
+instead of autoreconf. If you need to run multiple commands, put them in
+a script and pass the script instead (or add a target to debian/rules).
 
 =back
 
@@ -73,7 +80,7 @@ foreach(@{$dh{EXCLUDE}}) {
 }
 
 # Run autoreconf to recreate the needed files.
-doit('autoreconf', '-f', '-i');
+@ARGV ? doit(@ARGV) : doit('autoreconf', '-f', '-i');
 
 # Copy the files we don't want to be replaced back.
 foreach(@{$dh{EXCLUDE}}) {
