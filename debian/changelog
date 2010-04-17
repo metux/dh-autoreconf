@@ -2,4 +2,4 @@ dh-autoreconf (1) unstable; urgency=low
 
   * Initial release (Closes: #575938).
 
- -- Julian Andres Klode <jak@debian.org>  Tue, 30 Mar 2010 19:22:18 +0200
+ -- Julian Andres Klode <jak@debian.org>  Sat, 17 Apr 2010 15:18:49 +0200

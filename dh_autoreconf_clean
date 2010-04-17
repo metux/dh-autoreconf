@@ -11,24 +11,12 @@ use Debian::Debhelper::Dh_Lib;
 
 =head1 SYNOPSIS
 
-B<dh_autoreconf_clean> [S<I<debhelper options>>] [B<-X>I<item>]
+B<dh_autoreconf_clean> [S<I<debhelper options>>]
 
 =head1 DESCRIPTION
 
 dh_autoreconf_clean removes all files which have been created or changed
 during the autoreconf call executed by L<dh_autoreconf(1)>.
-
-=head1 OPTIONS
-
-=over 4
-
-=item B<-X>I<item> B<--exclude=>I<item>
-
-Exclude files that contain "item" anywhere in their filename from being
-deleted, even if they would normally be deleted. You may use this option
-multiple times to build up a list of things to exclude.
-
-=back
 
 =cut
 
@@ -63,17 +51,14 @@ while(<FILE>) {
     my ($checksum, $filename) = split;
     # Mark file for deletion if its new or if it has changed and only if it is
     # not excluded and not inside debian/.
-    push @delete, $filename if ((!defined($file{$filename}) ||
-                                $file{$filename} ne $checksum)
-                                && ! excludefile($_)
-                                &&  ($filename !~ /^.\/debian\//));
+    push @delete, $filename if (!defined($file{$filename}) ||
+                                $file{$filename} ne $checksum);
 }
 close(FILE);
 
 # Cleanup
 doit("rm", "-f", "--", @delete) if @delete;
 doit("rm", "-f", "debian/autoreconf.before", "debian/autoreconf.after");
-doit("rm", "-r", "-f", "debian/autoreconf-excluded.d");
 
 =head1 SEE ALSO
 
@@ -82,8 +67,5 @@ L<debhelper(7)>, L<dh_autoreconf(1)>, L<dh-autoreconf(7)>
 =head1 AUTHOR
 
 Julian Andres Klode <jak@debian.org>
-
-The documentation for the B<-X> option was taken from L<dh_clean(1)> which
-was written by Joey Hess <joeyh@debian.org>.
 
 =cut

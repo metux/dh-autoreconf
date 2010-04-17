@@ -15,9 +15,8 @@ This will call dh_autoreconf prior to dh_auto_configure and will call
 dh_autoreconf_clean before dh_clean.
 
 For more information on how to control the autoreconf process or how to
-exclude stuff from autoreconf, read the L<dh_autoreconf(1)> manual page. For
-information on how to prevent unwanted file deletions, read the manual page
-of L<dh_autoreconf_clean(1)>.
+other possible options, read the L<dh_autoreconf(1)> and
+L<dh_autoreconf_clean(1)> manual pages.
 
 =head1 CDBS INTEGRATION
 

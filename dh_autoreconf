@@ -27,10 +27,10 @@ which creates a list of all changed and added files and removes them.
 
 =item B<-X>I<item> B<--exclude=>I<item>
 
-Make sure that autoreconf does not replace the file "item". This is done by
-copying the file to a temporary location before autoreconf and copying it
-back afterwards. This may be useful to prevent patched files (e.g. by dpkg
-in source format 3) from being overwritten by something else.
+Exclude files that contain "item" anywhere in their filename from being
+checked for changes. This means that those files won't be deleted by
+C<dh_autoreconf_clean> even if there are changes. You may use this option
+multiple times to build up a list of things to exclude.
 
 =item B<--mode=>I<mode>
 
@@ -64,9 +64,14 @@ shall not be run:
 
 init(options => { "mode=s" => \$dh{MODE}});
 
+my $find_options='! -ipath "./debian/*" -a ';
+if (defined($dh{EXCLUDE_FIND}) && $dh{EXCLUDE_FIND} ne '') {
+    $find_options .= "! \\( $dh{EXCLUDE_FIND} \\) -a";
+}
+
 my %modes = (
-    'md5' => 'find -type f | xargs md5sum',
-    'timesize' => 'find -type f -printf "%s|%T@  %p\n"'
+    'md5' => "find $find_options -type f | xargs md5sum",
+    'timesize' => "find $find_options -type f -printf \"%s|%T@  %p\n\""
 );
 
 my $find = $modes{$dh{MODE} || "md5"} ||
@@ -74,18 +79,8 @@ my $find = $modes{$dh{MODE} || "md5"} ||
 
 complex_doit("$find > debian/autoreconf.before");
 
-# Copy the files we don't want to be replaced into a temporary location.
-foreach(@{$dh{EXCLUDE}}) {
-    doit('install', '-D', '--', $_, "debian/autoreconf-excluded.d/$_");
-}
-
 # Run autoreconf to recreate the needed files.
 @ARGV ? doit(@ARGV) : doit('autoreconf', '-f', '-i');
-
-# Copy the files we don't want to be replaced back.
-foreach(@{$dh{EXCLUDE}}) {
-    doit('install', '-D', '--', "debian/autoreconf-excluded.d/$_", $_);
-}
 
 complex_doit("$find > debian/autoreconf.after");
 
