@@ -70,7 +70,7 @@ if (defined($dh{EXCLUDE_FIND}) && $dh{EXCLUDE_FIND} ne '') {
 }
 
 my %modes = (
-    'md5' => "find $find_options -type f | xargs md5sum",
+    'md5' => "find $find_options -type f -exec md5sum {} \\;",
     'timesize' => "find $find_options -type f -printf \"%s|%T@  %p\n\""
 );
 
