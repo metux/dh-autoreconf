@@ -12,7 +12,7 @@ Architecture: all
 Depends: ${perl:Depends}, ${misc:Depends}, debhelper, autoconf,
          automake | automaken, libtool
 Enhances: debhelper, cdbs
-Recommends: autopoint
+Recommends: autopoint, gettext
 Description: debhelper add-on to call autoreconf and clean up after the build
  dh-autoreconf provides a debhelper sequence addon named 'autoreconf' and two
  commands, dh_autoreconf and dh_autoreconf_clean.
