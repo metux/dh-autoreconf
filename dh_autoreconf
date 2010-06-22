@@ -21,6 +21,19 @@ debian/autoreconf.before and debian/autoreconf.after which contain checksums
 of all files before/after the build. It is complemented by dh_autoreconf_clean
 which creates a list of all changed and added files and removes them.
 
+=head1 FILES
+
+=over 4
+
+=item debian/autoreconf
+
+This file can contain a list of directories. If present, dh_autoreconf will
+only scan the given directories for changes. If no special command is given
+to dh_autoreconf, it will also forward the directory list to autoreconf
+which causes it to be run only on those sub directories.
+
+=back
+
 =head1 OPTIONS
 
 =over 4
@@ -64,10 +77,17 @@ shall not be run:
 
 init(options => { "mode=s" => \$dh{MODE}});
 
+my @directories;
 my $find_options='! -ipath "./debian/*" -a ';
 if (defined($dh{EXCLUDE_FIND}) && $dh{EXCLUDE_FIND} ne '') {
     $find_options .= "! \\( $dh{EXCLUDE_FIND} \\) -a";
 }
+
+if (-e "debian/autoreconf") {
+    @directories=filearray("debian/autoreconf", ".");
+    $find_options = join(" ",@directories)." ".$find_options;
+}
+
 
 my %modes = (
     'md5' => "find $find_options -type f -exec md5sum {} \\;",
@@ -80,7 +100,7 @@ my $find = $modes{$dh{MODE} || "md5"} ||
 complex_doit("$find > debian/autoreconf.before");
 
 # Run autoreconf to recreate the needed files.
-@ARGV ? doit(@ARGV) : doit('autoreconf', '-f', '-i');
+@ARGV ? doit(@ARGV) : doit('autoreconf', '-f', '-i', @directories);
 
 complex_doit("$find > debian/autoreconf.after");
 
