@@ -1,3 +1,14 @@
+dh-autoreconf (2) unstable; urgency=low
+
+  [ Didier Roche ]
+  * Fix issue in find | xargs when files contain spaces (Closes:
+    #586755).
+
+  [ Julian Andres Klode ]
+  * Set Standards-Version to 3.9.0.
+
+ -- Julian Andres Klode <jak@debian.org>  Fri, 23 Jul 2010 13:24:44 +0200
+
 dh-autoreconf (1) unstable; urgency=low
 
   * Initial release (Closes: #575938).
