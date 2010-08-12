@@ -1,3 +1,10 @@
+dh-autoreconf (2~bpo50+1) lenny-backports; urgency=low
+
+  * Rebuild for lenny-backports.
+  * Remove debian/source/format
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 12 Aug 2010 15:19:57 +0200
+
 dh-autoreconf (2) unstable; urgency=low
 
   [ Didier Roche ]
