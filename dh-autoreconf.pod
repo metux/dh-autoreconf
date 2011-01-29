@@ -9,7 +9,7 @@ can be used in the following way:
 
     #!/usr/bin/make -f
     %:
-        dh --with autoreconf $@
+        dh $@ --with autoreconf
 
 This will call dh_autoreconf prior to dh_auto_configure and will call
 dh_autoreconf_clean before dh_clean.
