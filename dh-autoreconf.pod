@@ -26,6 +26,13 @@ to pass extra arguments to dh_autoreconf, and the variable
 C<DEB_DH_AUTORECONF_CLEAN_ARGS> to pass arguments to dh_autoreconf_clean. See
 their manual pages for information on available arguments.
 
+=head1 CAVEATS
+
+dh_autoreconf is a superset of the autotools-dev debhelper addons, so
+you do not need --with=autotools_dev if you use --with=autoreconf. In
+fact, in most cases they should not be used together, as it may lead to
+unpredictable behaviour.
+
 =head1 SEE ALSO
 
 L<debhelper(7)>, L<dh(1)>, L<dh_autoreconf(1)>, L<dh_autoreconf_clean(1)>
