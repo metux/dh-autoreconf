@@ -45,6 +45,9 @@ checked for changes. This means that those files won't be deleted by
 C<dh_autoreconf_clean> even if there are changes. You may use this option
 multiple times to build up a list of things to exclude.
 
+Starting with version 3, the directories of common version control systems
+such as cvs, git, hg, svn, and bzr are excluded automatically.
+
 =item B<--mode=>I<mode>
 
 Change the way in which modifications to files are detected. The default mode
@@ -79,8 +82,14 @@ init(options => { "mode=s" => \$dh{MODE}});
 
 my @directories;
 my $find_options='! -ipath "./debian/*" -a ';
+my @exclude_default = ("'*/.git/*'", "'*/.hg/*'", "'*/.bzr/*'", "'*/.svn/*'",
+                       "'*/CVS/*'");
+
+$find_options .= ("! \\( -path " . join(" -o -path ", @exclude_default) .
+                      " \\) -a ");
+
 if (defined($dh{EXCLUDE_FIND}) && $dh{EXCLUDE_FIND} ne '') {
-    $find_options .= "! \\( $dh{EXCLUDE_FIND} \\) -a";
+    $find_options .= "! \\( $dh{EXCLUDE_FIND} \\) -a ";
 }
 
 if (-e "debian/autoreconf") {
