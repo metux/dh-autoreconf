@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Julian Andres Klode <jak@debian.org>
 Build-Depends: debhelper (>= 7.0.50~)
-Standards-Version: 3.9.0
+Standards-Version: 3.9.1
 Vcs-Git: git://git.debian.org/collab-maint/dh-autoreconf.git
 Vcs-Browser: http://git.debian.org/?p=collab-maint/dh-autoreconf.git
 
