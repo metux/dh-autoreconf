@@ -1,6 +1,8 @@
 # autoreconf.mk - dh-autoreconf integration for CDBS.
 
-post-patches::
+post-patches:: debian/autoreconf.after
+
+debian/autoreconf.after:
 	dh_autoreconf $(DEB_DH_AUTORECONF_ARGS)
 
 clean::
