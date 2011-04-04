@@ -22,6 +22,12 @@ during the autoreconf call executed by L<dh_autoreconf(1)>.
 
 init();
 
+# autoreconf failed, just remove the 'before' file.
+if (-r 'debian/autoreconf.before' && ! -r 'debian/autoreconf.after') {
+    doit("rm", "debian/autoreconf.before");
+    exit 0;
+}
+
 if (! -r 'debian/autoreconf.before' || ! -r 'debian/autoreconf.after') {
     exit 0;
 }
