@@ -1,5 +1,8 @@
 # autoreconf.mk - dh-autoreconf integration for CDBS.
 
+CDBS_BUILD_DEPENDS_rules_autoreconf := dh-autoreconf
+CDBS_BUILD_DEPENDS += , $(CDBS_BUILD_DEPENDS_rules_autoreconf)
+
 post-patches:: debian/autoreconf.after
 
 debian/autoreconf.after:
