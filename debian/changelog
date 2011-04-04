@@ -1,3 +1,22 @@
+dh-autoreconf (3) unstable; urgency=low
+
+  [ Cyril Brulebois ]
+  * dh-autoreconf.pod: Update rules example for debhelper 8 (Closes: #611414)
+
+  [ Julian Andres Klode ]
+  * autoreconf.mk: Run dh_autoreconf only once (Closes: #618580)
+  * Make it possible to run on sub directories only (Closes: #582114)
+  * autoreconf.mk: Add to CDBS_BUILD_DEPENDS (Closes: #610163)
+  * autoreconf.mk: Run dh_autoreconf_clean before clean (Closes: #596099)
+  * debian/control: Set Standards-Version to 3.9.1
+  * dh_autoreconf: Ignore common VCS directories (Closes: #611864)
+  * dh_autoreconf_clean: Remove 'before' file even if autoreconf failed
+
+  [ Marcin Owsiany ]
+  * dh-autoreconf.pod: Document conflict with autotools-dev (Closes: #587102)
+
+ -- Julian Andres Klode <jak@debian.org>  Mon, 04 Apr 2011 16:06:13 +0200
+
 dh-autoreconf (2) unstable; urgency=low
 
   [ Didier Roche ]
