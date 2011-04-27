@@ -8,7 +8,5 @@ post-patches:: debian/autoreconf.after
 debian/autoreconf.after:
 	dh_autoreconf $(DEB_DH_AUTORECONF_ARGS)
 
-autoreconf-clean:
+reverse-config::
 	dh_autoreconf_clean $(DEB_DH_AUTORECONF_CLEAN_ARGS)
-
-clean:: autoreconf-clean
