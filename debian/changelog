@@ -1,3 +1,15 @@
+dh-autoreconf (4) unstable; urgency=low
+
+  [ Julian Andres Klode ]
+  * autoreconf.mk: Run _clean in reverse-config (Closes: #596099)
+  * dh_autoreconf: Add --as-needed for automatic patching of ltmain.sh
+  * debian/control: Increase Standards-Version to 3.9.2
+
+  [ Ari Pollak ]
+  * dh_autoreconf: support parameters passed to custom program (Closes: #623229)
+
+ -- Julian Andres Klode <jak@debian.org>  Tue, 14 Jun 2011 19:32:29 +0200
+
 dh-autoreconf (3) unstable; urgency=low
 
   [ Cyril Brulebois ]
