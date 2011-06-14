@@ -26,12 +26,34 @@ to pass extra arguments to dh_autoreconf, and the variable
 C<DEB_DH_AUTORECONF_CLEAN_ARGS> to pass arguments to dh_autoreconf_clean. See
 their manual pages for information on available arguments.
 
+=head1 PATCHING LTMAIN.SH FOR AS-NEEDED LINKER FLAGS
+
+You can add support for -Wl,--as-needed to ltmain.sh (at least for those
+ltmain.sh scripts changed during autoreconf) by passing the argument
+B<--as-needed> to dh_autoreconf, as demonstrated in the following example:
+
+    #!/usr/bin/make -f
+    %:
+        dh $@ --with autoreconf
+    override_dh_autoreconf:
+        dh_autoreconf --as-needed
+
+and for CDBS, by adding it to the correct variable such as:
+
+    DEB_DH_AUTORECONF_ARGS = --as-needed
+
+For more information about this feature, see L<dh_autoreconf(1)>
+
 =head1 CAVEATS
 
 dh_autoreconf is a superset of the autotools-dev debhelper addons, so
 you do not need --with=autotools_dev if you use --with=autoreconf. In
 fact, in most cases they should not be used together, as it may lead to
 unpredictable behaviour.
+
+From time to time, there might be a short breakage for those using
+automatic ltmain.sh patching, when the patch now longer applies to
+the ltmain.sh.
 
 =head1 SEE ALSO
 
