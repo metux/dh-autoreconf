@@ -109,7 +109,7 @@ my $find = $modes{$dh{MODE} || "md5"} ||
 complex_doit("$find > debian/autoreconf.before");
 
 # Run autoreconf to recreate the needed files.
-@ARGV ? doit(@ARGV) : doit('autoreconf', '-f', '-i', @directories);
+@ARGV ? doit(@ARGV, @{$dh{U_PARAMS}}) : doit('autoreconf', '-f', '-i', @directories);
 
 complex_doit("$find > debian/autoreconf.after");
 
