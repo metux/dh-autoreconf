@@ -3,7 +3,7 @@ Last-Update: 2011-06-14
 
 --- a/ltmain.sh
 +++ b/ltmain.sh
-@@ -5787,6 +5787,11 @@ func_mode_link ()
+@@ -5800,6 +5800,11 @@ func_mode_link ()
  	arg=$func_stripname_result
  	;;
  
@@ -15,7 +15,7 @@ Last-Update: 2011-06-14
        -Wl,*)
  	func_stripname '-Wl,' '' "$arg"
  	args=$func_stripname_result
-@@ -6150,6 +6155,15 @@ func_mode_link ()
+@@ -6163,6 +6168,15 @@ func_mode_link ()
  	lib=
  	found=no
  	case $deplib in
@@ -28,6 +28,6 @@ Last-Update: 2011-06-14
 +	  fi
 +	  continue
 +	  ;;
- 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe|-threads)
+ 	-mt|-mthreads|-kthread|-Kthread|-pthread|-pthreads|--thread-safe \
+         |-threads|-fopenmp|-openmp|-mp|-xopenmp|-omp|-qsmp=*)
  	  if test "$linkmode,$pass" = "prog,link"; then
- 	    compile_deplibs="$deplib $compile_deplibs"
