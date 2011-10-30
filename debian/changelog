@@ -1,3 +1,9 @@
+dh-autoreconf (5) unstable; urgency=low
+
+  * ltmain-as-needed.diff: Rebase against libtool 2.4.2 (Closes: #647070)
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 30 Oct 2011 14:36:09 +0100
+
 dh-autoreconf (4) unstable; urgency=low
 
   [ Julian Andres Klode ]
