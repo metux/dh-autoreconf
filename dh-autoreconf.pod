@@ -26,7 +26,9 @@ to pass extra arguments to dh_autoreconf, and the variable
 C<DEB_DH_AUTORECONF_CLEAN_ARGS> to pass arguments to dh_autoreconf_clean. See
 their manual pages for information on available arguments.
 
-=head1 PATCHING LTMAIN.SH FOR AS-NEEDED LINKER FLAGS
+=head1 TIPS AND EXAMPLES
+
+=head2 PATCHING LTMAIN.SH FOR AS-NEEDED LINKER FLAGS
 
 You can add support for -Wl,--as-needed to ltmain.sh (at least for those
 ltmain.sh scripts changed during autoreconf) by passing the argument
@@ -44,6 +46,21 @@ and for CDBS, by adding it to the correct variable such as:
 
 For more information about this feature, see L<dh_autoreconf(1)>
 
+=head2 RUNNING MULTIPLE COMMANDS WITH DH_AUTORECONF
+
+Please note that you may run dh_autoreconf only once. If you need to run
+multiple commands, you can put the commands into a script or your debian/rules
+file and then pass the name of your script to dh_autoreconf. For example, if
+your script is called debian/autogen.sh, you can put the following into your
+debian/rules if you use dh:
+
+    override_dh_autoreconf:
+        dh_autoreconf debian/autogen.sh
+
+Or, if you use CDBS:
+
+    DEB_DH_AUTORECONF_ARGS += debian/autogen.sh
+
 =head1 CAVEATS
 
 dh_autoreconf is a superset of the autotools-dev debhelper addons, so
@@ -54,6 +71,9 @@ unpredictable behaviour.
 From time to time, there might be a short breakage for those using
 automatic ltmain.sh patching, when the patch now longer applies to
 the ltmain.sh.
+
+You can only run dh_autoreconf once. Future versions may be able to
+be run multiple times, but this requires slightly more planning.
 
 =head1 SEE ALSO
 

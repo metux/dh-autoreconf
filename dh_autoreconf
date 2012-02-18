@@ -21,6 +21,10 @@ debian/autoreconf.before and debian/autoreconf.after which contain checksums
 of all files before/after the build. It is complemented by dh_autoreconf_clean
 which creates a list of all changed and added files and removes them.
 
+Please note that dh_autoreconf can only be run once. Thus, if you need to
+run multiple commands, use a script or similar. An example is given in
+L<dh-autoreconf(7)>.
+
 =head1 FILES
 
 =over 4
@@ -109,6 +113,9 @@ if (-e "debian/autoreconf") {
     $find_options = join(" ",@directories)." ".$find_options;
 }
 
+if (-e "debian/autoreconf.before" || -e "debian/autoreconf.after") {
+    error("Can only be run once, see dh-autoreconf(7)");
+}
 
 my %modes = (
     'md5' => "find $find_options -type f -exec md5sum {} \\;",
