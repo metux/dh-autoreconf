@@ -9,6 +9,7 @@ Vcs-Browser: http://git.debian.org/?p=collab-maint/dh-autoreconf.git
 
 Package: dh-autoreconf
 Architecture: all
+Multi-Arch: foreign
 Depends: ${perl:Depends}, ${misc:Depends}, debhelper, autoconf,
          automake | automaken, libtool (>= 2.4.2)
 Enhances: debhelper, cdbs
