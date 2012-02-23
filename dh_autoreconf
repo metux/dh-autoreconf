@@ -92,6 +92,7 @@ shall not be run:
 init(options => { "mode=s" => \$dh{MODE},
                   "as-needed" => \$dh{AS_NEEDED}});
 
+my $exception;
 my @directories;
 my $find_options='! -ipath "./debian/*" -a ';
 my @exclude_default = ("'*/.git/*'", "'*/.hg/*'", "'*/.bzr/*'", "'*/.svn/*'",
@@ -127,10 +128,18 @@ my $find = $modes{$dh{MODE} || "md5"} ||
 
 complex_doit("$find > debian/autoreconf.before");
 
-# Run autoreconf to recreate the needed files.
-@ARGV ? doit(@ARGV, @{$dh{U_PARAMS}}) : doit('autoreconf', '-f', '-i', @directories);
+eval {
+    # Run autoreconf to recreate the needed files.
+    @ARGV ? doit(@ARGV, @{$dh{U_PARAMS}}) : doit('autoreconf', '-f', '-i', @directories);
+    1;
+} or do {
+    $exception = $@;
+};
 
 complex_doit("$find > debian/autoreconf.after");
+
+# Let's fail here if autoreconf failed.
+die $exception if (defined $exception);
 
 # Fix ltmain.sh to support -Wl,--as-needed
 if ($dh{AS_NEEDED}) {
