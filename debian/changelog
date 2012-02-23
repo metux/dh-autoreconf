@@ -1,3 +1,13 @@
+dh-autoreconf (6) unstable; urgency=low
+
+  * Require at least version 2.4.2 of libtool (Closes: #655876)
+  * Add Multi-Arch: foreign field (Closes: #658969)
+  * Do not allow to run dh_autoreconf twice (Closes: #630766)
+  * dh_autoreconf: Create autoreconf.after even if autoreconf fails
+  * Increase Standards-Version to 3.9.3, use copyright-format 1.0
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 23 Feb 2012 15:46:34 +0100
+
 dh-autoreconf (5) unstable; urgency=low
 
   * ltmain-as-needed.diff: Rebase against libtool 2.4.2 (Closes: #647070)
