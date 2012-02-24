@@ -69,7 +69,7 @@ with libtoolize running.
 =item I<program> B<--> I<params>
 
 Run the program given by I<program> with the arguments given by I<params>
-instead of autoreconf. If you need to run multiple commands, put them in
+instead of autoreconf -f -i. If you need to run multiple commands, put them in
 a script and pass the script instead (or add a target to debian/rules).
 
 =back
