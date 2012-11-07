@@ -43,9 +43,8 @@ open(FILE, 'debian/autoreconf.before') or die($!);
 
 while(<FILE>) {
     chomp($_);
-    # The delimiter here is a comma
     my ($checksum, $filename) = split(' ', $_, 2);
-    # Put the key => value pair in the hash
+
     $file{$filename} = $checksum;
 }
 close(FILE);
