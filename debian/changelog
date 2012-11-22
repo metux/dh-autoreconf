@@ -1,3 +1,11 @@
+dh-autoreconf (7) unstable; urgency=low
+
+  * dh_autoreconf: Documentation: -f -i is passed to autoreconf by default
+  * dh_autoreconf_clean: Correctly handle spaces in file names (Closes: #692317)
+  * dh_autoreconf_clean: Remove invalid and unneeded comments
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 22 Nov 2012 23:31:00 +0100
+
 dh-autoreconf (6) unstable; urgency=low
 
   * Require at least version 2.4.2 of libtool (Closes: #655876)
