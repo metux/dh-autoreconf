@@ -11,9 +11,8 @@ Package: dh-autoreconf
 Architecture: all
 Multi-Arch: foreign
 Depends: ${perl:Depends}, ${misc:Depends}, debhelper, autoconf,
-         automake | automaken, libtool (>= 2.4.2)
+         automake | automaken, autopoint, libtool (>= 2.4.2)
 Enhances: debhelper, cdbs
-Recommends: autopoint
 Description: debhelper add-on to call autoreconf and clean up after the build
  dh-autoreconf provides a debhelper sequence addon named 'autoreconf' and two
  commands, dh_autoreconf and dh_autoreconf_clean.
