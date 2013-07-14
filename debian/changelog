@@ -1,3 +1,9 @@
+dh-autoreconf (9) unstable; urgency=low
+
+  * autoreconf.mk: Only run dh_autoreconf_clean if needed (Closes: #709079)
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 14 Jul 2013 22:21:08 +0200
+
 dh-autoreconf (8) unstable; urgency=low
 
   * Promote autopoint from Recommends to Depends (Closes: #610966)
