@@ -1,3 +1,12 @@
+dh-autoreconf (8) unstable; urgency=low
+
+  * Promote autopoint from Recommends to Depends (Closes: #610966)
+  * autoreconf.mk: include buildcore.mk (Closes: #681036)
+  * Set Standards-Version to 3.9.4
+  * Update Vcs-Git and Vcs-Browser to the anonscm urls
+
+ -- Julian Andres Klode <jak@debian.org>  Sun, 14 Jul 2013 20:37:21 +0200
+
 dh-autoreconf (7) unstable; urgency=low
 
   * dh_autoreconf: Documentation: -f -i is passed to autoreconf by default
