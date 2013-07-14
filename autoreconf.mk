@@ -10,4 +10,6 @@ debian/autoreconf.after:
 	dh_autoreconf $(DEB_DH_AUTORECONF_ARGS)
 
 reverse-config::
-	dh_autoreconf_clean $(DEB_DH_AUTORECONF_CLEAN_ARGS)
+	if test -e debian/autoreconf.before; then \
+		dh_autoreconf_clean $(DEB_DH_AUTORECONF_CLEAN_ARGS); \
+	fi
