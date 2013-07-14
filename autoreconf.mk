@@ -1,4 +1,5 @@
 # autoreconf.mk - dh-autoreconf integration for CDBS.
+include /usr/share/cdbs/1/rules/buildcore.mk
 
 CDBS_BUILD_DEPENDS_rules_autoreconf := dh-autoreconf
 CDBS_BUILD_DEPENDS += , $(CDBS_BUILD_DEPENDS_rules_autoreconf)
