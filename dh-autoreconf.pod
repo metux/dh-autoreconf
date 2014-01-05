@@ -69,7 +69,7 @@ fact, in most cases they should not be used together, as it may lead to
 unpredictable behaviour.
 
 From time to time, there might be a short breakage for those using
-automatic ltmain.sh patching, when the patch now longer applies to
+automatic ltmain.sh patching, when the patch no longer applies to
 the ltmain.sh.
 
 You can only run dh_autoreconf once. Future versions may be able to
