@@ -63,10 +63,10 @@ Or, if you use CDBS:
 
 =head1 CAVEATS
 
-dh_autoreconf is a superset of the autotools-dev debhelper addons, so
-you do not need --with=autotools_dev if you use --with=autoreconf. In
-fact, in most cases they should not be used together, as it may lead to
-unpredictable behaviour.
+dh_autoreconf is mostly a superset of the autotools-dev debhelper addons, so
+you do not need --with=autotools_dev if you use --with=autoreconf, as long
+as your autoreconf updates the config.guess and config.sub files. If it does
+not, feel free to use both together.
 
 From time to time, there might be a short breakage for those using
 automatic ltmain.sh patching, when the patch no longer applies to
