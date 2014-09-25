@@ -1,3 +1,20 @@
+dh-autoreconf (10) unstable; urgency=medium
+
+  [ Julian Andres Klode ]
+  * debian/copyright: Extend copyright statement to 2013
+  * dh_autoreconf.pod: Fix typo (Closes: #729001)
+  * dh-autoreconf.pod: Document when dh-autoreconf can be used with
+    autotools-dev (Closes: #698765)
+  * debian/gbp.conf: Add
+  * Standards-Version 3.9.5
+  * debian/copyright: Extend to 2014
+  * Use debhelper 9
+
+  [ Eric Dorland ]
+  * Fix automake documentation (Closes: #740797)
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 25 Sep 2014 15:40:21 +0200
+
 dh-autoreconf (9) unstable; urgency=low
 
   * autoreconf.mk: Only run dh_autoreconf_clean if needed (Closes: #709079)
