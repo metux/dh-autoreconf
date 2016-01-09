@@ -8,6 +8,7 @@ dh_autoreconf - Call autoreconf -f -i and keep track of the changed files.
 
 use strict;
 use Debian::Debhelper::Dh_Lib;
+use Cwd;
 
 =head1 SYNOPSIS
 
@@ -66,6 +67,13 @@ default one). The changes are reverted in dh_autoreconf_clean. You should
 not prevent LIBTOOLIZE from running with this, as it only works correctly
 with libtoolize running.
 
+=item  B<-D>I<dir> B<--sourcedirectory>=I<dir>
+
+Run everything in the source directory. Supported only in debhelper compat
+level 10 for backwards compatibility. dh(1) does not forward this parameter,
+you need to override dh_autoreconf and specify it again.
+
+
 =item I<program> B<--> I<params>
 
 Run the program given by I<program> with the arguments given by I<params>
@@ -89,7 +97,11 @@ shall not be run:
 
 =cut
 
+my $opt_sourcedir;
+
 init(options => { "mode=s" => \$dh{MODE},
+                  "D=s" => \$opt_sourcedir,
+                  "sourcedirectory=s" => \$opt_sourcedir,
                   "as-needed" => \$dh{AS_NEEDED}});
 
 my $exception;
@@ -130,7 +142,12 @@ complex_doit("$find > debian/autoreconf.before");
 
 eval {
     # Run autoreconf to recreate the needed files.
+    my $pwd = getcwd();
+    chdir $opt_sourcedir if (defined($opt_sourcedir) && !compat(9));
+
     @ARGV ? doit(@ARGV, @{$dh{U_PARAMS}}) : doit('autoreconf', '-f', '-i', @directories);
+
+    chdir $pwd;
     1;
 } or do {
     $exception = $@;
