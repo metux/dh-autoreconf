@@ -117,8 +117,12 @@ if (defined($dh{EXCLUDE_FIND}) && $dh{EXCLUDE_FIND} ne '') {
     $find_options .= "! \\( $dh{EXCLUDE_FIND} \\) -a ";
 }
 
+# Find ltmain.sh
+my $LTMAIN = "/usr/share/libtool/build-aux/ltmain.sh";
+$LTMAIN = "/usr/share/libtool/config/ltmain.sh" if (! -e "$LTMAIN");
+
 if ($dh{AS_NEEDED}) {
-    $find_options = "/usr/share/libtool/config/ltmain.sh . " . $find_options;
+    $find_options = "$LTMAIN . " . $find_options;
 }
 
 if (-e "debian/autoreconf") {
@@ -165,7 +169,7 @@ if ($dh{AS_NEEDED}) {
     while(<FILE>) {
         chomp($_);
         my ($checksum, $filename) = split;
-        if ($filename eq "/usr/share/libtool/config/ltmain.sh") {
+        if ($filename eq "$LTMAIN") {
             $ltcheck = $checksum;
         } elsif ($filename =~ m/\/ltmain.sh$/ and $checksum eq $ltcheck) {
             doit("patch", "-f", "--no-backup-if-mismatch", "-i",

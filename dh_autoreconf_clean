@@ -57,7 +57,9 @@ while(<FILE>) {
     chomp($_);
     my ($checksum, $filename) = split(' ', $_, 2);
 
-    if ($filename eq "/usr/share/libtool/config/ltmain.sh") {
+    if ($filename eq "/usr/share/libtool/build-aux/ltmain.sh") {
+        $ltcheck = $checksum;
+    } elsif ($filename eq "/usr/share/libtool/config/ltmain.sh") {
         $ltcheck = $checksum;
     } elsif (!defined($file{$filename}) || $file{$filename} ne $checksum) {
         # Remove non-excluded, changed files
