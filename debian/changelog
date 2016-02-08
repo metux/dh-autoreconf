@@ -1,3 +1,12 @@
+dh-autoreconf (11) unstable; urgency=medium
+
+  * dh_autoreconf: Support --sourcedirectory in compat level 10
+    (Closes: #673254)
+  * Also look for ltmain.sh in paths from libtool 2.46 (Closes: #814063)
+  * ltmain-as-needed.diff: Refresh
+
+ -- Julian Andres Klode <jak@debian.org>  Mon, 08 Feb 2016 11:13:42 +0100
+
 dh-autoreconf (10) unstable; urgency=medium
 
   [ Julian Andres Klode ]
