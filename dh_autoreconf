@@ -70,9 +70,7 @@ with libtoolize running.
 =item  B<-D>I<dir> B<--sourcedirectory>=I<dir>
 
 Run everything in the source directory. Supported only in debhelper compat
-level 10 for backwards compatibility. dh(1) does not forward this parameter,
-you need to override dh_autoreconf and specify it again.
-
+level 10 for backwards compatibility.
 
 =item I<program> B<--> I<params>
 
