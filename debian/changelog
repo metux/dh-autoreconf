@@ -1,3 +1,15 @@
+dh-autoreconf (12) unstable; urgency=medium
+
+  [ Julian Andres Klode ]
+  * dh_autoreconf: --sourcedirectory is forwarded by dh(1)
+    Thanks to Niels Thykier for reporting this on IRC
+  * debian/control: Standards-Version: 3.9.7
+
+  [ Niels Thykier ]
+  * dh_autoreconf: Do nothing if there are no configure scripts
+
+ -- Julian Andres Klode <jak@debian.org>  Sat, 02 Apr 2016 23:44:09 +0200
+
 dh-autoreconf (11) unstable; urgency=medium
 
   * dh_autoreconf: Support --sourcedirectory in compat level 10
