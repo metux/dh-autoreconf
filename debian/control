@@ -3,7 +3,7 @@ Section: devel
 Priority: optional
 Maintainer: Julian Andres Klode <jak@debian.org>
 Build-Depends: debhelper (>= 9)
-Standards-Version: 3.9.5
+Standards-Version: 3.9.7
 Vcs-Git: git://anonscm.debian.org/collab-maint/dh-autoreconf.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/dh-autoreconf.git
 
