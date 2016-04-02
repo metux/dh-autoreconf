@@ -126,6 +126,15 @@ if ($dh{AS_NEEDED}) {
 if (-e "debian/autoreconf") {
     @directories=filearray("debian/autoreconf", ".");
     $find_options = join(" ",@directories)." ".$find_options;
+} elsif (not @ARGV) {
+    # No debian/autoreconf and no arguments - perhaps there is nothing
+    # to do.
+    my $dir = '.';
+    $dir = $opt_sourcedir if defined($opt_sourcedir);
+    if (not -f "${dir}/configure.ac" and not -f "${dir}/configure.in") {
+        # Nothing to do, exit early.
+        exit(0);
+    }
 }
 
 if (-e "debian/autoreconf.before" || -e "debian/autoreconf.after") {
