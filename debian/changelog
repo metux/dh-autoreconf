@@ -1,3 +1,11 @@
+dh-autoreconf (12~bpo8+1) jessie-backports; urgency=medium
+
+  * Rebuild for jessie-backports.
+  * Set debian-branch = jessie-backports
+  * Revert "ltmain-as-needed.diff: Refresh" - jessie has old one
+
+ -- Julian Andres Klode <jak@debian.org>  Wed, 01 Jun 2016 19:27:05 +0200
+
 dh-autoreconf (12) unstable; urgency=medium
 
   [ Julian Andres Klode ]
