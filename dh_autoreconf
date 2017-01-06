@@ -142,7 +142,7 @@ if (-e "debian/autoreconf.before" || -e "debian/autoreconf.after") {
 }
 
 my %modes = (
-    'md5' => "find $find_options -type f -exec md5sum {} \\;",
+    'md5' => "find $find_options -type f -exec md5sum {} +",
     'timesize' => "find $find_options -type f -printf \"%s|%T@  %p\n\""
 );
 
