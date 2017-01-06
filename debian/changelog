@@ -1,3 +1,11 @@
+dh-autoreconf (13) unstable; urgency=medium
+
+  * Speed-up: Use -exec ... + instead of -exec ... \; for find.
+    Thanks to Helmut Grohne and Tollef Fog Heen for the suggestion
+  * Update Standards-Version and point Vcs fields to https
+
+ -- Julian Andres Klode <jak@debian.org>  Fri, 06 Jan 2017 20:52:54 +0100
+
 dh-autoreconf (12) unstable; urgency=medium
 
   [ Julian Andres Klode ]
