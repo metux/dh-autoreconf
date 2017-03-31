@@ -1,3 +1,9 @@
+dh-autoreconf (14) unstable; urgency=medium
+
+  * Drop alternative dependency on automaken (Closes: #857556)
+
+ -- Julian Andres Klode <jak@debian.org>  Fri, 31 Mar 2017 18:13:10 +0200
+
 dh-autoreconf (13) unstable; urgency=medium
 
   * Speed-up: Use -exec ... + instead of -exec ... \; for find.
