@@ -1,3 +1,17 @@
+dh-autoreconf (15) unstable; urgency=medium
+
+  [ Lukas Schwaighofer ]
+  * update dh-autoreconf(7) man page (Closes: #870518)
+
+  [ Niels Thykier ]
+  * dh_autoreconf_clean: Add a NOOP promise (Closes: #881394)
+  * dh-autoreconf can build without (fake)root
+
+  [ Julian Andres Klode ]
+  * Bump Standards-Version to 4.1.1
+
+ -- Julian Andres Klode <jak@debian.org>  Sat, 11 Nov 2017 22:47:52 +0100
+
 dh-autoreconf (14) unstable; urgency=medium
 
   * Drop alternative dependency on automaken (Closes: #857556)
