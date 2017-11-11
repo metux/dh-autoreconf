@@ -23,6 +23,8 @@ any ltmain.sh patch applied by dh_autoreconf.
 
 init();
 
+# PROMISE: DH NOOP WITHOUT autoreconf.before autoreconf.after
+
 # autoreconf failed, just remove the 'before' file.
 if (-r 'debian/autoreconf.before' && ! -r 'debian/autoreconf.after') {
     doit("rm", "debian/autoreconf.before");
