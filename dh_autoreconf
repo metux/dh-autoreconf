@@ -138,7 +138,8 @@ if (-e "debian/autoreconf") {
 }
 
 if (-e "debian/autoreconf.before" || -e "debian/autoreconf.after") {
-    error("Can only be run once, see dh-autoreconf(7)");
+    warning("Only runs once, see dh-autoreconf(7)");
+    exit(0);
 }
 
 my %modes = (
