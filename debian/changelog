@@ -1,3 +1,12 @@
+dh-autoreconf (16) unstable; urgency=medium
+
+  * Do not fail, only warn, if run multiple times (Closes: #887482)
+  * Also clean up symlinks (Closes: #882479)
+  * Run dh_autoreconf after dh_update_autotools_config,
+    not before dh_auto_configure
+
+ -- Julian Andres Klode <jak@debian.org>  Wed, 24 Jan 2018 22:26:43 +0100
+
 dh-autoreconf (15) unstable; urgency=medium
 
   [ Lukas Schwaighofer ]
