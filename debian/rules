@@ -1,6 +1,6 @@
 #!/usr/bin/make -f
-version := $(shell dpkg-parsechangelog | sed -nr 's/^Version: (.*)/\1/p')
-pod2man := pod2man -r "dh-autoreconf v$(version)" -c dh-autoreconf
+include /usr/share/dpkg/pkg-info.mk
+pod2man := pod2man -r "dh-autoreconf v$(DEB_VERSION)" -c dh-autoreconf
 
 %:
 	dh $@
