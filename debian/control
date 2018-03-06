@@ -13,6 +13,7 @@ Architecture: all
 Multi-Arch: foreign
 Depends: ${perl:Depends}, ${misc:Depends}, debhelper, autoconf,
          automake, autopoint, libtool (>= 2.4.2)
+Breaks: quilt (<< 0.63-8.2~), dpatch (<< 2.0.38+nmu1~)
 Enhances: debhelper, cdbs
 Description: debhelper add-on to call autoreconf and clean up after the build
  dh-autoreconf provides a debhelper sequence addon named 'autoreconf' and two
