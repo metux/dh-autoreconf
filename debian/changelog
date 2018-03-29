@@ -1,3 +1,11 @@
+dh-autoreconf (17~bpo9+1) stretch-backports; urgency=medium
+
+  * Rebuild for stretch-backports.
+  * debian/gbp.conf: Set debian-branch = stretch-backports
+  * Lower Build-Depends: debhelper (>= 11) to debhelper (>= 11~)
+
+ -- Julian Andres Klode <jak@debian.org>  Thu, 29 Mar 2018 15:38:43 +0200
+
 dh-autoreconf (17) unstable; urgency=medium
 
   * Add Breaks: quilt (<< 0.63-8.2~), dpatch (<< 2.0.38+nmu1~) (Closes: #889567)
